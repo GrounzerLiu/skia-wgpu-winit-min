@@ -1,0 +1,8 @@
+[package]
+name = "skia-wgpu-winit-min"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+skia-safe = { version = "0.158.0", features = ["wgpu"] }
+winit = "0.31.0-beta.4"

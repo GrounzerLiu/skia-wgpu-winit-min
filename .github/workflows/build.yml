@@ -1,0 +1,41 @@
+name: build
+
+on:
+  push:
+  workflow_dispatch:
+
+jobs:
+  windows:
+    runs-on: windows-2022
+    env:
+      SKIA_DEBUG: "0"
+      SKIA_SOURCE_DIR: ${{ runner.temp }}\skia-src
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dtolnay/rust-toolchain@stable
+      - name: Ensure LLVM and Ninja
+        shell: pwsh
+        run: |
+          if (-not (Test-Path "C:\Program Files\LLVM\bin\clang-cl.exe")) {
+            choco install llvm -y --no-progress
+          }
+          if (-not (Get-Command ninja -ErrorAction SilentlyContinue)) {
+            choco install ninja -y --no-progress
+          }
+      - name: Cache Skia sources and cargo output
+        uses: actions/cache@v4
+        with:
+          path: |
+            ${{ runner.temp }}\skia-src
+            target
+          key: skia-m158-${{ hashFiles('Cargo.lock') }}
+          restore-keys: skia-m158-
+      - name: Build
+        run: cargo build --release --locked
+      - name: Render offscreen and check the pixels
+        run: cargo run --release --locked --bin offscreen-check
+      - uses: actions/upload-artifact@v4
+        with:
+          name: skia-wgpu-winit-min
+          path: target/release/skia-wgpu-winit-min.exe
+          if-no-files-found: error
