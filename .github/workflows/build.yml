@@ -4,12 +4,12 @@ on:
   push:
   workflow_dispatch:
 
+env:
+  SKIA_DEBUG: "0"
+
 jobs:
   windows:
     runs-on: windows-2022
-    env:
-      SKIA_DEBUG: "0"
-      SKIA_SOURCE_DIR: ${{ runner.temp }}\skia-src
     steps:
       - uses: actions/checkout@v4
       - uses: dtolnay/rust-toolchain@stable
@@ -31,8 +31,12 @@ jobs:
           key: skia-m158-${{ hashFiles('Cargo.lock') }}
           restore-keys: skia-m158-
       - name: Build
+        env:
+          SKIA_SOURCE_DIR: ${{ runner.temp }}\skia-src
         run: cargo build --release --locked
       - name: Render offscreen and check the pixels
+        env:
+          SKIA_SOURCE_DIR: ${{ runner.temp }}\skia-src
         run: cargo run --release --locked --bin offscreen-check
       - uses: actions/upload-artifact@v4
         with:
