@@ -15,7 +15,7 @@ use winit::application::ApplicationHandler;
 use winit::event::WindowEvent;
 use winit::event_loop::{ActiveEventLoop, EventLoop};
 use winit::raw_window_handle::{DisplayHandle, HandleError, HasDisplayHandle, HasWindowHandle, WindowHandle};
-use winit::window::{Window, WindowId};
+use winit::window::{Window, WindowAttributes, WindowId};
 
 /// A window that owns itself, so that a wgpu surface created from it can be 'static.
 struct OwnedWindow(Arc<dyn Window>);
@@ -61,7 +61,7 @@ impl ApplicationHandler for App {
 
         let window: Arc<dyn Window> = Arc::from(
             event_loop
-                .create_window(Window::default_attributes().with_title("Skia on wgpu"))
+                .create_window(WindowAttributes::default().with_title("Skia on wgpu"))
                 .expect("creating the window failed"),
         );
 
@@ -129,7 +129,7 @@ impl Skia {
             wgpu::TextureFormat::Bgra8Unorm | wgpu::TextureFormat::Bgra8UnormSrgb => ColorType::BGRA8888,
             _ => ColorType::RGBA8888,
         };
-        let surface = graphite::wgpu::surfaces::wrap_texture(
+        let mut surface = graphite::wgpu::surfaces::wrap_texture(
             &mut self.recorder,
             texture,
             color_type,
