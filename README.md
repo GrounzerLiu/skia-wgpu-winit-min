@@ -20,6 +20,13 @@ cargo run --release      # 开窗，Skia 绘制
 cargo run --release --bin offscreen-check   # 离屏渲染 + 像素断言，无需显示器
 ```
 
+## 运行结果
+
+![截图](docs/screenshot.png)
+
+CI（windows-2022，源码构建 Skia）跑通后，本地运行这个 exe 的效果：窗口由 winit 创建，wgpu 拿到交换链纹理，
+Skia 用 Graphite 直接画进去——两个圆和一个描边矩形都是 Skia 的 `draw_circle` / `draw_rect` 画的。
+
 ## 与官方示例的差异
 
 官方 `skia-safe/examples/wgpu-window` 用的是 winit 0.30。winit 0.31 的 API 变了：
