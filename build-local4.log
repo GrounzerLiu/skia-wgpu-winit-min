@@ -1,0 +1,5 @@
+   Compiling skia-bindings v0.158.0
+   Compiling skia-wgpu v0.158.0
+   Compiling skia-safe v0.158.0
+   Compiling skia-wgpu-winit-min v0.1.0 (D:\any\skia-wgpu-min\app)
+    Finished `release` profile [optimized] target(s) in 3m 56s

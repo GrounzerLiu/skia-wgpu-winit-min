@@ -20,6 +20,13 @@ cargo run --release      # 开窗，Skia 绘制
 cargo run --release --bin offscreen-check   # 离屏渲染 + 像素断言，无需显示器
 ```
 
+## 文档
+
+[docs/skia-wgpu-winit-notes.md](docs/skia-wgpu-winit-notes.md) 记录了三者结合时的注意事项：
+依赖怎么选、为什么必须源码构建、Windows 上几个构建坑（registry 不可写、符号链接需要特权、
+`SKIA_SOURCE_DIR` 会进 offline 而 offline 不支持 wgpu）、winit 0.31 beta 的 API 迁移、
+wgpu 30 的变化、Graphite 的调用顺序与析构顺序、颜色空间、以及无显示器时的像素断言验证法。
+
 ## 运行结果
 
 ![截图](docs/screenshot.png)

@@ -1,0 +1,43 @@
+   Compiling skia-bindings v0.158.0
+   Compiling wgpu v30.0.2
+error: failed to run custom build command for `skia-bindings v0.158.0`
+
+Caused by:
+  process didn't exit successfully: `D:\any\skia-wgpu-min\app\target\release\build\skia-bindings/ff9e35722b19d5ba\out\build_script_build` (exit code: 101)
+  --- stdout
+  cargo:rerun-if-env-changed=DOCS_RS
+  cargo:rerun-if-env-changed=SKIA_DEBUG
+  cargo:rerun-if-env-changed=SKIA_SOURCE_DIR
+  cargo:rerun-if-env-changed=FORCE_SKIA_BUILD
+  cargo:rerun-if-env-changed=FORCE_SKIA_BINARIES_DOWNLOAD
+  TRYING TO DOWNLOAD AND INSTALL SKIA BINARIES: 0.158.0/92f4495fa0fd94959e3b-x86_64-pc-windows-msvc-graphite-jpegd-jpege-pdf-wgpu
+  cargo:rerun-if-env-changed=SKIA_BINARIES_URL
+    FROM: https://github.com/rust-skia/skia-binaries/releases/download/0.158.0/skia-binaries-92f4495fa0fd94959e3b-x86_64-pc-windows-msvc-graphite-jpegd-jpege-pdf-wgpu.tar.gz
+  DOWNLOAD AND INSTALL FAILED: curl error code: "22"
+  curl stderr: "curl: (22) The requested URL returned error: 404\r\n"
+  STARTING A FULL BUILD
+  HOST: x86_64-pc-windows-msvc
+  cargo:rerun-if-env-changed=CLANGCC
+  cargo:rerun-if-env-changed=CC
+  cargo:rerun-if-env-changed=CLANGCXX
+  cargo:rerun-if-env-changed=CXX
+  cargo:rerun-if-env-changed=OPT_LEVEL
+  cargo:rerun-if-env-changed=SKIA_USE_SYSTEM_LIBRARIES
+  cargo:rerun-if-env-changed=SDKTARGETSYSROOT
+  cargo:rerun-if-env-changed=SDKROOT
+  cargo:rerun-if-env-changed=VCINSTALLDIR
+  cargo:rerun-if-env-changed=LLVM_HOME
+  cargo:rerun-if-env-changed=USERPROFILE
+  cargo:rerun-if-env-changed=SKIA_NINJA_COMMAND
+  cargo:rerun-if-env-changed=SKIA_GN_COMMAND
+  Probing 'python'
+  Python 3 found: "python"
+  Synchronizing Skia dependencies
+  DOWNLOADING: https://codeload.github.com/rust-skia/skia/tar.gz/m158.4
+
+  --- stderr
+  Checking for "C:\\Program Files\\LLVM\\bin\\clang-cl.exe"
+
+  thread 'main' (30608) panicked at D:\any\skia-wgpu-min\.cargo-home\registry\src\index.crates.io-1949cf8c6b5b557f\skia-bindings-0.158.0\build_support\binary_cache\download.rs:178:43:
+  called `Result::unwrap()` on an `Err` value: Custom { kind: Uncategorized, error: TarError { desc: "failed to unpack `D:\\any\\skia-wgpu-min\\.cargo-home\\registry\\src\\index.crates.io-1949cf8c6b5b557f\\skia-bindings-0.158.0\\skia-m158.4\\src\\ports\\fontations\\Cargo.toml`", io: Custom { kind: Uncategorized, error: "客户端没有所需的特权。 (os error 1314) when symlinking ../../../bazel/external/fontations/Cargo.toml to D:\\any\\skia-wgpu-min\\.cargo-home\\registry\\src\\index.crates.io-1949cf8c6b5b557f\\skia-bindings-0.158.0\\skia-m158.4\\src\\ports\\fontations\\Cargo.toml" } } }
+  note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
